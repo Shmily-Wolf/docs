@@ -1,0 +1,19 @@
+name: Build and Deploy # workflow 的名称
+on: [push] # 触发条件
+permissions:
+  contents: write
+jobs: # 任务的集合
+  build-and-deploy: # 任务的名称
+    runs-on: ubuntu-latest # 运行环境
+    steps: # 任务的步骤
+      - name: Checkout 🛎️ # 步骤的名称
+        uses: actions/checkout@v6 # 步骤的使用的 action
+      - name: Install and Build 🔧 # 运行的命令
+        run: |
+          npm install -g pnpm
+          pnpm install
+          pnpm run docs:build
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: .vitepress/dist # The folder the action should deploy.
