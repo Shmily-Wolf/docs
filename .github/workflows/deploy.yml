@@ -12,7 +12,7 @@ jobs: # 任务的集合
         run: |
           npm install -g pnpm
           pnpm install
-          pnpm run docs:build
+          pnpm run build
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
